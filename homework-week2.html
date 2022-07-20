@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link href="src/styles.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/135dd7b758.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container1">
+      <div class="item1">
+        <button class="saved-cities">Saved cities</button>
+      </div>
+      <div class="item2">
+        <p class="add-location">Add current location to saved list</p>
+      </div>
+      <div class="item3">
+        <button class="save-to-list">
+          <i class="fa-regular fa-heart heart"></i>
+        </button>
+      </div>
+    </div>
+    <div class="container2">
+      <div class="item4">
+        <button class="current" id="current-button">Current</button>
+      </div>
+      <form class="item5">
+        <input
+          type="text"
+          placeholder="Enter a city..."
+          class="city-input"
+          id="city-input"
+        />
+        <button type="submit" class="search">Search</button>
+      </form>
+    </div>
+    <div class="container3">
+      <div class="item6">
+        <h1><i class="fa-solid fa-location-dot map"></i></h1>
+        <h1 id="city-heading">New York, United States</h1>
+      </div>
+      <div class="item7">
+        <p class="show-temperature">Show temperature in</p>
+        <button class="temperature" id="celsius-button">℃</button>
+        <button class="temperature" id="fahrenheit-button">℉</button>
+      </div>
+    </div>
+    <div class="container4">
+      <div class="item8">
+        <h3 id="day-of-week">Sunday</h3>
+        <h4 id="date">Jun 26 16:17</h4>
+        <h2 id="temperature-number">16</h2>
+        <h2 id="temperature-sign">°C</h2>
+      </div>
+      <div class="item9">
+        <img src="images/clouds-rain.svg" alt="" width="195px" />
+      </div>
+      <div class="item10">
+        <h3>Shower rain</h3>
+        <p class="indicators">
+          Wind: 13km/h <br />
+          Humidity: 78% <br />
+          Precipitation: 73%
+        </p>
+      </div>
+    </div>
+    <div class="container5">
+      <div class="item11">
+        <p class="date">Jun 27</p>
+        <img src="images/clouds-rain.svg" alt="" width="100px" />
+        <p>16° / 9°</p>
+      </div>
+      <div class="item11">
+        <p class="date">Jun 28</p>
+        <img src="images/clouds-rain.svg" alt="" width="100px" />
+        <p>16° / 10°</p>
+      </div>
+      <div class="item11">
+        <p class="date">Jun 29</p>
+        <img src="images/cloud-sun.svg" alt="" width="100px" />
+        <p>19° / 12°</p>
+      </div>
+      <div class="item11">
+        <p class="date">Jun 30</p>
+        <img src="images/cloud-sun.svg" alt="" width="100px" />
+        <p>18° / 11°</p>
+      </div>
+      <div class="item11">
+        <p class="date">Jul 1</p>
+        <img src="images/sun.svg" alt="" width="70px" />
+        <p>22° / 14°</p>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
