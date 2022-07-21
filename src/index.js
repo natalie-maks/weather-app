@@ -18,8 +18,18 @@ function showFahrenheit() {
   }
 }
 
+function getPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlCurrent).then(showTemperature);
+}
+
+function position() {
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+
 function formateDate(timestamp) {
-  console.log(new Date(timestamp));
   let dateAndTime = new Date(timestamp);
   let months = [
     "Jan",
@@ -87,42 +97,22 @@ function submitForm(event) {
   search(cityInput.value);
 }
 function search(cityName) {
-  let apiKey = `c670fa7c4d1ccad9ebab8f9eb49cae65`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
+
+let apiKey = `c670fa7c4d1ccad9ebab8f9eb49cae65`;
 
 search("London");
 
 let form = document.querySelector("form");
 form.addEventListener("submit", submitForm);
 
+let currentButton = document.querySelector(`#current-button`);
+currentButton.addEventListener("click", position);
+
 let tempCelsius = document.querySelector("#celsius-button");
 tempCelsius.addEventListener("click", showCelsius);
 
 let tempFahrenheit = document.querySelector("#fahrenheit-button");
 tempFahrenheit.addEventListener("click", showFahrenheit);
-
-function position() {
-  function getPosition(position) {
-    function showTemp(response) {
-      let pageHeading = document.querySelector("#city-heading");
-      pageHeading.innerHTML = response.data.name;
-
-      let locTemperature = response.data.main.temp;
-      let number = document.querySelector("#temperature-number");
-      number.innerHTML = Math.round(locTemperature);
-    }
-
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
-    let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-    axios.get(apiUrlCurrent).then(showTemp);
-  }
-
-  navigator.geolocation.getCurrentPosition(getPosition);
-}
-
-let current = document.querySelector(`#current-button`);
-current.addEventListener("click", position);
