@@ -19,6 +19,7 @@ function showFahrenheit() {
 }
 
 function getPosition(position) {
+  console.log(position);
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
@@ -31,6 +32,7 @@ function position() {
 
 function formateDate(timestamp) {
   let dateAndTime = new Date(timestamp);
+
   let months = [
     "Jan",
     "Feb",
@@ -75,6 +77,7 @@ function formateWeekDay(timestamp) {
 }
 
 function showTemperature(response) {
+  console.log(response);
   let temperatureElement = document.querySelector("#temperature-number");
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
@@ -87,8 +90,16 @@ function showTemperature(response) {
     "src",
     `images/${response.data.weather[0].icon}.svg`
   );
-  dateElement.innerHTML = formateDate(response.data.dt * 1000);
-  dayOfWeekElement.innerHTML = formateWeekDay(response.data.dt * 1000);
+
+  let currentDate = new Date(response.data.dt * 1000);
+  let locationTime =
+    (response.data.dt +
+      currentDate.getTimezoneOffset() * 60 +
+      response.data.timezone) *
+    1000;
+
+  dateElement.innerHTML = formateDate(locationTime);
+  dayOfWeekElement.innerHTML = formateWeekDay(locationTime);
 }
 
 function submitForm(event) {
