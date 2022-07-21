@@ -18,10 +18,58 @@ function showFahrenheit() {
   }
 }
 
+function formateDate(timestamp) {
+  console.log(new Date(timestamp));
+  let dateAndTime = new Date(timestamp);
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[dateAndTime.getMonth()];
+  let date = dateAndTime.getDate();
+  let hours = dateAndTime.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = dateAndTime.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${month} ${date} ${hours}:${minutes}`;
+}
+
+function formateWeekDay(timestamp) {
+  let day = new Date(timestamp);
+  let daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return daysOfWeek[day.getDay()];
+}
+
 function showTemperature(response) {
   let temperatureElement = document.querySelector("#temperature-number");
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
+  let dateElement = document.querySelector("#date");
+  let dayOfWeekElement = document.querySelector("#day-of-week");
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   headingCityElement.innerHTML = response.data.name;
@@ -29,6 +77,8 @@ function showTemperature(response) {
     "src",
     `images/${response.data.weather[0].icon}.svg`
   );
+  dateElement.innerHTML = formateDate(response.data.dt * 1000);
+  dayOfWeekElement.innerHTML = formateWeekDay(response.data.dt * 1000);
 }
 
 function submitForm(event) {
@@ -76,50 +126,3 @@ function position() {
 
 let current = document.querySelector(`#current-button`);
 current.addEventListener("click", position);
-
-let today = new Date();
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-let dayOfWeek = document.querySelector("#day-of-week");
-dayOfWeek.innerHTML = days[today.getDay()];
-
-let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-let minutes = today.getMinutes();
-if (minutes < 10) {
-  minutes = "0" + today.getMinutes();
-} else {
-  today.getMinutes();
-}
-
-let date = document.querySelector("#date");
-date.innerHTML =
-  months[today.getMonth()] +
-  " " +
-  today.getDate() +
-  "    " +
-  today.getHours() +
-  ":" +
-  minutes;
