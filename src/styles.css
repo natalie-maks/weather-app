@@ -88,7 +88,7 @@ p {
 }
 
 .container4 {
-  grid-template-columns: 26% 32% 40%;
+  grid-template-columns: 27% 31% 40%;
   column-gap: 1%;
   margin-bottom: 50px;
 }

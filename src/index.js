@@ -6,6 +6,12 @@ function search(event) {
     let sign = document.querySelector("#temperature-number");
     sign.innerHTML = Math.round(temperature);
     cityHeading.innerHTML = response.data.name;
+
+    let weatherIconElement = document.querySelector("#weather-icon");
+    weatherIconElement.setAttribute(
+      "src",
+      `images/${response.data.weather[0].icon}.svg`
+    );
   }
 
   let cityHeading = document.querySelector("#city-heading");
