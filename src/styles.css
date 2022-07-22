@@ -192,3 +192,7 @@ button {
 .map {
   font-size: 40px;
 }
+
+.description {
+  text-transform: capitalize;
+}

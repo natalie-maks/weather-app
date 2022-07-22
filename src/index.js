@@ -72,6 +72,9 @@ function showTemperature(response) {
   let weatherIconElement = document.querySelector("#weather-icon");
   let dateElement = document.querySelector("#date");
   let dayOfWeekElement = document.querySelector("#day-of-week");
+  let descriptionElement = document.querySelector("#description");
+  let windElement = document.querySelector("#wind");
+  let humidityElement = document.querySelector("#humidity");
 
   temperatureCelsius = response.data.main.temp;
 
@@ -82,6 +85,9 @@ function showTemperature(response) {
     "src",
     `images/${response.data.weather[0].icon}.svg`
   );
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  humidityElement.innerHTML = response.data.main.humidity;
 
   let currentDate = new Date(response.data.dt * 1000);
   let locationTime =
