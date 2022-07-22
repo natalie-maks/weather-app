@@ -1,21 +1,12 @@
 function showCelsius() {
-  let tempCel = document.querySelector("#temperature-number");
-  let signCel = document.querySelector("#temperature-sign");
-  if (signCel.innerHTML === "°F") {
-    let mathCel = ((parseInt(tempCel.innerHTML, 10) - 32) * 5) / 9;
-    tempCel.innerHTML = Math.round(mathCel);
-    signCel.innerHTML = "°C";
-  }
+  temperatureDigitElement.innerHTML = Math.round(temperatureCelsius);
+  temperatureUnitElement.innerHTML = "°C";
 }
 
 function showFahrenheit() {
-  let tempFahr = document.querySelector("#temperature-number");
-  let signFahr = document.querySelector("#temperature-sign");
-  if (signFahr.innerHTML === "°C") {
-    let mathFahr = (parseInt(tempFahr.innerHTML, 10) * 9) / 5 + 32;
-    tempFahr.innerHTML = Math.round(mathFahr);
-    signFahr.innerHTML = "°F";
-  }
+  let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
+  temperatureDigitElement.innerHTML = Math.round(temperatureFahrenheit);
+  temperatureUnitElement.innerHTML = "°F";
 }
 
 function getPosition(position) {
@@ -77,14 +68,15 @@ function formateWeekDay(timestamp) {
 }
 
 function showTemperature(response) {
-  console.log(response);
-  let temperatureElement = document.querySelector("#temperature-number");
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
   let dateElement = document.querySelector("#date");
   let dayOfWeekElement = document.querySelector("#day-of-week");
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  temperatureCelsius = response.data.main.temp;
+
+  temperatureDigitElement.innerHTML = Math.round(temperatureCelsius);
+  temperatureUnitElement.innerHTML = "°C";
   headingCityElement.innerHTML = response.data.name;
   weatherIconElement.setAttribute(
     "src",
@@ -114,8 +106,6 @@ function search(cityName) {
 
 let apiKey = `c670fa7c4d1ccad9ebab8f9eb49cae65`;
 
-search("London");
-
 let form = document.querySelector("form");
 form.addEventListener("submit", submitForm);
 
@@ -127,3 +117,9 @@ tempCelsius.addEventListener("click", showCelsius);
 
 let tempFahrenheit = document.querySelector("#fahrenheit-button");
 tempFahrenheit.addEventListener("click", showFahrenheit);
+
+let temperatureDigitElement = document.querySelector("#temperature-digit");
+let temperatureUnitElement = document.querySelector("#temperature-unit");
+let temperatureCelsius = null;
+
+search("London");
