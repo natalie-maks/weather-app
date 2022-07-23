@@ -67,30 +67,54 @@ function formateWeekDay(timestamp) {
   return daysOfWeek[day.getDay()];
 }
 
-function showForecast() {
+function formateForecastDate(timestamp) {
+  let dateAndTime = new Date(timestamp);
+
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[dateAndTime.getMonth()];
+  let date = dateAndTime.getDate();
+
+  return `${month} ${date}`;
+}
+
+function showForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = "";
-  let days = ["mon", "tue", "wed", "thu", "fri"];
-  days.forEach(function (day) {
-    forecastHTML += `
+  let days = response.data.daily;
+  days.forEach(function (day, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML += `
       <div class="item11">
-        <p class="date">Jun 27</p>
-        <img src="images/01d.svg" alt="" width="100px" />
-        <p>16° / 9°</p>
+        <p class="date">${formateForecastDate(day.dt * 1000)}</p>
+        <img src="images/${day.weather[0].icon}.svg" alt="" width="100px" />
+        <p> ${Math.round(day.temp.max)}° / ${Math.round(day.temp.min)}°</p>
       </div>`;
+    }
   });
 
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecast);
 }
 
 function showTemperature(response) {
-  console.log(response);
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
   let dateElement = document.querySelector("#date");
