@@ -84,7 +84,13 @@ function showForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showForecast);
+}
+
 function showTemperature(response) {
+  console.log(response);
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
   let dateElement = document.querySelector("#date");
@@ -115,7 +121,7 @@ function showTemperature(response) {
 
   dateElement.innerHTML = formateDate(locationTime);
   dayOfWeekElement.innerHTML = formateWeekDay(locationTime);
-  showForecast();
+  getForecast(response.data.coord);
 }
 
 function submitForm(event) {
