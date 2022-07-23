@@ -91,6 +91,7 @@ function formateForecastDate(timestamp) {
 }
 
 function showForecast(response) {
+  console.log(response);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = "";
@@ -115,6 +116,7 @@ function getForecast(coordinates) {
 }
 
 function showTemperature(response) {
+  console.log(response);
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
   let dateElement = document.querySelector("#date");
@@ -176,4 +178,4 @@ let temperatureDigitElement = document.querySelector("#temperature-digit");
 let temperatureUnitElement = document.querySelector("#temperature-unit");
 let temperatureCelsius = null;
 
-search("London");
+search("New York");

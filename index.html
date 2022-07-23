@@ -13,64 +13,66 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="container1">
-      <div class="item1">
-        <button class="saved-cities">Saved cities</button>
+    <div class="weather">
+      <div class="container1">
+        <div class="item1">
+          <button class="saved-cities">Saved cities</button>
+        </div>
+        <div class="item2">
+          <p class="add-location">Add current location to saved list</p>
+        </div>
+        <div class="item3">
+          <button class="save-to-list">
+            <i class="fa-regular fa-heart heart"></i>
+          </button>
+        </div>
       </div>
-      <div class="item2">
-        <p class="add-location">Add current location to saved list</p>
+      <div class="container2">
+        <div class="item4">
+          <button class="current" id="current-button">Current</button>
+        </div>
+        <form class="item5">
+          <input
+            type="text"
+            placeholder="Enter a city..."
+            class="city-input"
+            id="city-input"
+            autocomplete="off"
+          />
+          <button type="submit" class="search">Search</button>
+        </form>
       </div>
-      <div class="item3">
-        <button class="save-to-list">
-          <i class="fa-regular fa-heart heart"></i>
-        </button>
+      <div class="container3">
+        <div class="item6">
+          <h1><i class="fa-solid fa-location-dot map"></i></h1>
+          <h1 id="city-heading"></h1>
+        </div>
+        <div class="item7">
+          <p class="show-temperature">Show temperature in</p>
+          <button class="temperature" id="celsius-button">℃</button>
+          <button class="temperature" id="fahrenheit-button">℉</button>
+        </div>
       </div>
+      <div class="container4">
+        <div class="item8">
+          <h3 id="day-of-week"></h3>
+          <h4 id="date">J</h4>
+          <h2 id="temperature-digit"></h2>
+          <h2 id="temperature-unit"></h2>
+        </div>
+        <div class="item9">
+          <img src="" alt="" width="150px" id="weather-icon" />
+        </div>
+        <div class="item10">
+          <h3 class="description" id="description"></h3>
+          <p class="indicators">
+            Wind: <span id="wind">13</span>km/h <br />
+            Humidity: <span id="humidity">78</span>% <br />
+          </p>
+        </div>
+      </div>
+      <div class="container5" id="forecast"></div>
     </div>
-    <div class="container2">
-      <div class="item4">
-        <button class="current" id="current-button">Current</button>
-      </div>
-      <form class="item5">
-        <input
-          type="text"
-          placeholder="Enter a city..."
-          class="city-input"
-          id="city-input"
-          autocomplete="off"
-        />
-        <button type="submit" class="search">Search</button>
-      </form>
-    </div>
-    <div class="container3">
-      <div class="item6">
-        <h1><i class="fa-solid fa-location-dot map"></i></h1>
-        <h1 id="city-heading">New York, United States</h1>
-      </div>
-      <div class="item7">
-        <p class="show-temperature">Show temperature in</p>
-        <button class="temperature" id="celsius-button">℃</button>
-        <button class="temperature" id="fahrenheit-button">℉</button>
-      </div>
-    </div>
-    <div class="container4">
-      <div class="item8">
-        <h3 id="day-of-week">Sunday</h3>
-        <h4 id="date">Jun 26 16:17</h4>
-        <h2 id="temperature-digit"></h2>
-        <h2 id="temperature-unit"></h2>
-      </div>
-      <div class="item9">
-        <img src="images/01n.svg" alt="" width="150px" id="weather-icon" />
-      </div>
-      <div class="item10">
-        <h3 class="description" id="description">Shower rain</h3>
-        <p class="indicators">
-          Wind: <span id="wind">13</span>km/h <br />
-          Humidity: <span id="humidity">78</span>% <br />
-        </p>
-      </div>
-    </div>
-    <div class="container5" id="forecast"></div>
     <small
       ><a href="https://github.com/natalie-maks/weather-app" target="_blank"
         >Open-source code</a

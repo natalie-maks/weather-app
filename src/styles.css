@@ -1,7 +1,15 @@
 body {
-  width: 800px;
-  margin: 30px auto;
+  background-color: #62adeb;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.weather {
+  background-color: rgba(255, 255, 255, 0.85);
+  width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 7px;
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.75);
 }
 
 h1,
@@ -116,7 +124,8 @@ p {
   line-height: 8px;
 }
 .item11 {
-  border: 3px solid #c075cd;
+  border: 1.9px solid #453d6ba9;
+  background-color: #fff;
   border-radius: 3px;
   text-align: center;
 }
@@ -130,11 +139,11 @@ form {
 }
 
 .city-input {
-  border: 3px solid #c075cd;
+  border: 1.5px solid #453d6ba9;
   border-right: none;
   width: 100%;
-  height: 34px;
-  padding: 0;
+  height: 37px;
+  padding: 0 5px;
   margin: 0;
   border-radius: 3px 0px 0px 3px;
 }
@@ -144,8 +153,8 @@ button {
   height: 40px;
   border-radius: 3px;
   margin: 0;
-  background-color: #fdf1ff;
-  border: 3px solid #c075cd;
+  background-color: #fff;
+  border: 1.5px solid #453d6ba9;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1em;
 }
@@ -167,8 +176,8 @@ button {
 }
 
 .temperature {
-  background-color: #fff7f7;
-  border: 3px solid #ee6666;
+  background-color: #fff;
+  border: 1.5px solid #ee6666;
   height: 30px;
   padding: 0 20px;
 }
