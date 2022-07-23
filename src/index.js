@@ -67,6 +67,23 @@ function formateWeekDay(timestamp) {
   return daysOfWeek[day.getDay()];
 }
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = "";
+  let days = ["mon", "tue", "wed", "thu", "fri"];
+  days.forEach(function (day) {
+    forecastHTML += `
+      <div class="item11">
+        <p class="date">Jun 27</p>
+        <img src="images/01d.svg" alt="" width="100px" />
+        <p>16° / 9°</p>
+      </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
@@ -98,6 +115,7 @@ function showTemperature(response) {
 
   dateElement.innerHTML = formateDate(locationTime);
   dayOfWeekElement.innerHTML = formateWeekDay(locationTime);
+  showForecast();
 }
 
 function submitForm(event) {
