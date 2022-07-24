@@ -21,9 +21,23 @@ function position() {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
 
-function formateDate(timestamp) {
-  let dateAndTime = new Date(timestamp);
+function formateTime(timestamp) {
+  let time = new Date(timestamp);
 
+  let hours = time.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = time.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
+function formateDate(timestamp) {
+  let day = new Date(timestamp);
   let months = [
     "Jan",
     "Feb",
@@ -38,22 +52,8 @@ function formateDate(timestamp) {
     "Nov",
     "Dec",
   ];
-  let month = months[dateAndTime.getMonth()];
-  let date = dateAndTime.getDate();
-  let hours = dateAndTime.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = dateAndTime.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  return `${month} ${date} ${hours}:${minutes}`;
-}
-
-function formateWeekDay(timestamp) {
-  let day = new Date(timestamp);
+  let month = months[day.getMonth()];
+  let date = day.getDate();
   let daysOfWeek = [
     "Sunday",
     "Monday",
@@ -64,7 +64,7 @@ function formateWeekDay(timestamp) {
     "Saturday",
   ];
 
-  return daysOfWeek[day.getDay()];
+  return `${daysOfWeek[day.getDay()]}, ${month} ${date}`;
 }
 
 function formateForecastDate(timestamp) {
@@ -145,8 +145,8 @@ function showTemperature(response) {
       response.data.timezone) *
     1000;
 
-  dateElement.innerHTML = formateDate(locationTime);
-  dayOfWeekElement.innerHTML = formateWeekDay(locationTime);
+  dateElement.innerHTML = formateTime(locationTime);
+  dayOfWeekElement.innerHTML = formateDate(locationTime);
   getForecast(response.data.coord);
 }
 
@@ -178,4 +178,4 @@ let temperatureDigitElement = document.querySelector("#temperature-digit");
 let temperatureUnitElement = document.querySelector("#temperature-unit");
 let temperatureCelsius = null;
 
-search("New York");
+search("Sydney");

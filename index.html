@@ -13,71 +13,104 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="weather">
-      <div class="container1">
-        <div class="item1">
-          <button class="saved-cities">Saved cities</button>
-        </div>
-        <div class="item2">
-          <p class="add-location">Add current location to saved list</p>
-        </div>
-        <div class="item3">
+    <div class="page">
+      <div class="heading">
+        <div class="container1">
+          <div class="item1">
+            <button class="saved-cities">Saved</button>
+          </div>
+          <form class="item2">
+            <input
+              type="text"
+              placeholder="Enter a city..."
+              class="city-input"
+              id="city-input"
+              autocomplete="off"
+            />
+            <button type="submit" class="search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+          <div class="item3">
+            <button class="current" id="current-button">Current</button>
+          </div>
           <button class="save-to-list">
             <i class="fa-regular fa-heart heart"></i>
           </button>
         </div>
-      </div>
-      <div class="container2">
-        <div class="item4">
-          <button class="current" id="current-button">Current</button>
-        </div>
-        <form class="item5">
-          <input
-            type="text"
-            placeholder="Enter a city..."
-            class="city-input"
-            id="city-input"
-            autocomplete="off"
-          />
-          <button type="submit" class="search">Search</button>
-        </form>
-      </div>
-      <div class="container3">
-        <div class="item6">
-          <h1><i class="fa-solid fa-location-dot map"></i></h1>
-          <h1 id="city-heading"></h1>
-        </div>
-        <div class="item7">
-          <p class="show-temperature">Show temperature in</p>
-          <button class="temperature" id="celsius-button">℃</button>
-          <button class="temperature" id="fahrenheit-button">℉</button>
+
+        <div class="container2">
+          <div class="item4">
+            <h1><i class="fa-solid fa-location-dot map"></i></h1>
+            <h1 id="city-heading"></h1>
+          </div>
+          <div class="item5">
+            <h4>
+              <span id="day-of-week"></span> <br />
+              <span id="date"></span>
+            </h4>
+          </div>
         </div>
       </div>
-      <div class="container4">
-        <div class="item8">
-          <h3 id="day-of-week"></h3>
-          <h4 id="date">J</h4>
-          <h2 id="temperature-digit"></h2>
-          <h2 id="temperature-unit"></h2>
+
+      <div class="current-weather">
+        <div class="row1">
+          <div class="item1"><h3>Current weather</h3></div>
+          <div class="weather-item2">
+            <button class="temperature" id="celsius-button">℃</button>
+            <button class="temperature" id="fahrenheit-button">℉</button>
+          </div>
         </div>
-        <div class="item9">
-          <img src="" alt="" width="150px" id="weather-icon" />
+
+        <div class="row2">
+          <div class="weather-item3">
+            <img src="" alt="" width="90px" id="weather-icon" />
+          </div>
+
+          <div class="weather-item4">
+            <h2 id="temperature-digit"></h2>
+            <h3 class="temperature-unit" id="temperature-unit"></h3>
+          </div>
+
+          <div class="weather-item5">
+            <h3 class="description" id="description"></h3>
+            <h4 class="feels-like" id="feels-like">Feels like: 22C</h4>
+          </div>
         </div>
-        <div class="item10">
-          <h3 class="description" id="description"></h3>
-          <p class="indicators">
-            Wind: <span id="wind">13</span>km/h <br />
-            Humidity: <span id="humidity">78</span>% <br />
-          </p>
+
+        <div class="row3">
+          <div class="weather-item6 indicators">
+            WIND <br /><span class="indicators-data" id="wind">13</span>km/h
+          </div>
+          <div class="weather-item6 indicators">
+            HUMIDITY <br /><span class="indicators-data" id="humidity">78</span
+            >%
+          </div>
+          <div class="weather-item6 indicators">
+            VISIBILITY <br /><span class="indicators-data" id="wind">13</span
+            >km/h
+          </div>
+          <div class="weather-item6 indicators">
+            UV <br /><span class="indicators-data" id="wind">13</span>km/h
+          </div>
+          <div class="weather-item6 indicators">
+            AIR POLUTION <br /><span class="indicators-data" id="wind">13</span
+            >km/h
+          </div>
         </div>
       </div>
-      <div class="container5" id="forecast"></div>
+
+      <div class="weather-forecast">
+        <h3>Weather forecast</h3>
+        <div class="container5" id="forecast"></div>
+      </div>
+
+      <small
+        ><a href="https://github.com/natalie-maks/weather-app" target="_blank"
+          >Open-source code</a
+        >
+      </small>
     </div>
-    <small
-      ><a href="https://github.com/natalie-maks/weather-app" target="_blank"
-        >Open-source code</a
-      >
-    </small>
     <script src="src/index.js"></script>
   </body>
 </html>
