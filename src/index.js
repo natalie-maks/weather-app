@@ -90,8 +90,27 @@ function formateForecastDate(timestamp) {
   return `${month} ${date}`;
 }
 
+function getUv(response) {
+  if (response < 3) {
+    return `Low Risk`;
+  } else {
+    if (response < 6) {
+      return `Moderate Risk`;
+    } else {
+      if (response < 8) {
+        return `High Risk`;
+      } else {
+        if (response < 10) {
+          return `Very High Risk`;
+        } else {
+          return `Extreme Risk`;
+        }
+      }
+    }
+  }
+}
+
 function showForecast(response) {
-  console.log(response);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = "";
@@ -108,6 +127,41 @@ function showForecast(response) {
   });
 
   forecastElement.innerHTML = forecastHTML;
+  let visibilityElement = document.querySelector("#visibility");
+  visibilityElement.innerHTML = `${response.data.current.visibility / 1000} km`;
+  let uvElement = document.querySelector("#uv");
+  uvElement.innerHTML = getUv(response.data.current.uvi);
+}
+
+function interpretAirPolution(response) {
+  if (response === 1) {
+    return `Good`;
+  } else {
+    if (response === 2) {
+      return `Fair`;
+    } else {
+      if (response === 3) {
+        return `Moderate`;
+      } else {
+        if (response === 4) {
+          return `Poor`;
+        } else {
+          return `Very Poor`;
+        }
+      }
+    }
+  }
+}
+
+function showAirPolution(response) {
+  let airElement = document.querySelector("#air");
+  let airQuality = interpretAirPolution(response.data.list[0].main.aqi);
+  airElement.innerHTML = airQuality;
+}
+
+function getAirPolution(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
+  axios.get(apiUrl).then(showAirPolution);
 }
 
 function getForecast(coordinates) {
@@ -116,12 +170,12 @@ function getForecast(coordinates) {
 }
 
 function showTemperature(response) {
-  console.log(response);
   let headingCityElement = document.querySelector("#city-heading");
   let weatherIconElement = document.querySelector("#weather-icon");
   let dateElement = document.querySelector("#date");
   let dayOfWeekElement = document.querySelector("#day-of-week");
   let descriptionElement = document.querySelector("#description");
+  let feelsLikeElement = document.querySelector("#feels-like");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
 
@@ -135,8 +189,11 @@ function showTemperature(response) {
     `images/${response.data.weather[0].icon}.svg`
   );
   descriptionElement.innerHTML = response.data.weather[0].description;
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  humidityElement.innerHTML = response.data.main.humidity;
+  feelsLikeElement.innerHTML = `Feels like: ${Math.round(
+    response.data.main.feels_like
+  )}°`;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  humidityElement.innerHTML = `${response.data.main.humidity} %`;
 
   let currentDate = new Date(response.data.dt * 1000);
   let locationTime =
@@ -148,6 +205,7 @@ function showTemperature(response) {
   dateElement.innerHTML = formateTime(locationTime);
   dayOfWeekElement.innerHTML = formateDate(locationTime);
   getForecast(response.data.coord);
+  getAirPolution(response.data.coord);
 }
 
 function submitForm(event) {
@@ -178,4 +236,4 @@ let temperatureDigitElement = document.querySelector("#temperature-digit");
 let temperatureUnitElement = document.querySelector("#temperature-unit");
 let temperatureCelsius = null;
 
-search("Sydney");
+search("London");
