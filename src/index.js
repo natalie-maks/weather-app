@@ -118,8 +118,8 @@ function showForecast(response) {
   days.forEach(function (day, index) {
     if (index > 0 && index < 6) {
       forecastHTML += `
-      <div class="item11">
-        <p class="date">${formateForecastDate(day.dt * 1000)}</p>
+      <div class="weather-forecast-item">
+        <h4>${formateForecastDate(day.dt * 1000)}</h4>
         <img src="images/${day.weather[0].icon}.svg" alt="" width="100px" />
         <p> ${Math.round(day.temp.max)}° / ${Math.round(day.temp.min)}°</p>
       </div>`;

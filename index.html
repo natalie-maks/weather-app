@@ -14,95 +14,85 @@
   </head>
   <body>
     <div class="page">
-      <div class="heading">
-        <div class="container1">
-          <div class="item1">
-            <button class="saved-cities">Saved</button>
-          </div>
-          <form class="item2">
-            <input
-              type="text"
-              placeholder="Enter a city..."
-              class="city-input"
-              id="city-input"
-              autocomplete="off"
-            />
-            <button type="submit" class="search">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form>
-          <div class="item3">
-            <button class="current" id="current-button">Current</button>
-          </div>
-          <button class="save-to-list">
-            <i class="fa-regular fa-heart heart"></i>
+      <div class="search-block">
+        <form class="search-block-item">
+          <input
+            type="text"
+            placeholder="Enter a city..."
+            autocomplete="off"
+            class="city-input"
+            id="city-input"
+          />
+          <button type="submit" class="search-button">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
           </button>
+        </form>
+        <div>
+          <button class="current-button" id="current-button">Current</button>
         </div>
+        <button class="temperature-button" id="celsius-button">℃</button>
+        <button class="temperature-button" id="fahrenheit-button">℉</button>
+      </div>
 
-        <div class="container2">
-          <div class="item4">
-            <h1><i class="fa-solid fa-location-dot map"></i></h1>
-            <h1 id="city-heading"></h1>
-          </div>
-          <div class="item5">
-            <h4>
-              <span id="day-of-week"></span> <br />
-              <span id="date"></span>
-            </h4>
-          </div>
+      <div class="heading">
+        <div>
+          <h1><i class="fa-solid fa-location-dot pin-icon"></i></h1>
+          <h1 id="city-heading"></h1>
+        </div>
+        <div class="heading-item">
+          <h4>
+            <span id="day-of-week"></span> <br />
+            <span id="date"></span>
+          </h4>
         </div>
       </div>
 
       <div class="current-weather">
-        <div class="row1">
-          <div class="item1"><h3>Current weather</h3></div>
-          <div class="weather-item2">
-            <button class="temperature" id="celsius-button">℃</button>
-            <button class="temperature" id="fahrenheit-button">℉</button>
-          </div>
-        </div>
+        <h3>Current weather</h3>
 
-        <div class="row2">
-          <div class="weather-item3">
+        <div class="current-weather-main">
+          <div class="current-weather-icon">
             <img src="" alt="" width="90px" id="weather-icon" />
           </div>
 
-          <div class="weather-item4">
+          <div class="current-weather-temp">
             <h2 id="temperature-digit"></h2>
             <h3 class="temperature-unit" id="temperature-unit"></h3>
           </div>
 
-          <div class="weather-item5">
+          <div class="current-weather-discription">
             <h3 class="description" id="description"></h3>
-            <h4 class="feels-like" id="feels-like">Feels like: 22C</h4>
+            <h4 class="feels-like" id="feels-like"></h4>
           </div>
         </div>
 
-        <div class="row3">
-          <div class="weather-item6 indicators">
-            WIND <br /><span class="indicators-data" id="wind">13</span>
+        <div class="current-weather-indicators">
+          <div>
+            <h4>WIND</h4>
+            <p id="wind">13</p>
           </div>
-          <div class="weather-item6 indicators">
-            HUMIDITY <br /><span class="indicators-data" id="humidity">78</span>
+          <div>
+            <h4>HUMIDITY</h4>
+            <p id="humidity">13</p>
           </div>
-          <div class="weather-item6 indicators">
-            VISIBILITY <br /><span class="indicators-data" id="visibility"
-              >13</span
-            >
+          <div>
+            <h4>VISIBILITY</h4>
+            <p id="visibility">13</p>
           </div>
-          <div class="weather-item6 indicators">
-            UV <br /><span class="indicators-data" id="uv">13</span>
+          <div>
+            <h4>UV</h4>
+            <p id="uv">13</p>
           </div>
-          <div class="weather-item6 indicators">
-            AIR QUALITY <br /><span class="indicators-data" id="air">13</span>
+          <div>
+            <h4>AIR QUALITY</h4>
+            <p id="air">13</p>
           </div>
         </div>
       </div>
 
-      <div class="weather-forecast">
-        <h3>Weather forecast</h3>
-        <div class="container5" id="forecast"></div>
-      </div>
+      <h3>Weather forecast</h3>
+
+      <div class="weather-forecast" id="forecast"></div>
 
       <small
         ><a href="https://github.com/natalie-maks/weather-app" target="_blank"
