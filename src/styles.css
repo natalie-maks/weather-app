@@ -66,7 +66,7 @@ p {
   background-color: rgba(255, 255, 255, 0.65);
   padding: 30px;
   border-radius: 7px;
-  box-shadow: 0 0 15px rgba(75, 75, 75, 0.75);
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.55);
   margin-bottom: 30px;
 }
 
@@ -118,13 +118,13 @@ p {
   text-align: center;
   border: 1.9px solid #424242a9;
   border-radius: 7px;
-  box-shadow: 0 0 15px rgba(75, 75, 75, 0.75);
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.55);
 }
 
 form {
   width: 100%;
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(75, 75, 75, 0.75);
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.55);
 }
 
 .city-input {
@@ -155,17 +155,17 @@ button {
 
 .current-button {
   width: 100%;
-  box-shadow: 0 0 15px rgba(75, 75, 75, 0.75);
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.55);
 }
 
 .temperature-button {
-  box-shadow: 0 0 15px rgba(75, 75, 75, 0.75);
+  box-shadow: 0 0 15px rgba(75, 75, 75, 0.55);
 }
 
 .search-button:hover,
 .current-button:hover,
 .temperature-button:hover {
-  background: #efeeff;
+  background: #f3f3f3ad;
 }
 
 .pin-icon {
