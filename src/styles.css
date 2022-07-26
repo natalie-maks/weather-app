@@ -1,6 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(75deg, rgb(86, 66, 158), rgb(245, 242, 55));
+  background-image: url("../images/city.jpg");
+  background-size: cover;
 }
 
 h1,
@@ -44,6 +45,7 @@ p {
   border-radius: 7px;
   padding: 40px 30px 30px;
   background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(179, 179, 179, 0.55);
 }
 
 .search-block {
