@@ -87,7 +87,7 @@ p {
 
 .current-weather-main {
   display: grid;
-  grid-template-columns: 18% 30% 50%;
+  grid-template-columns: 17% 30% 51%;
   height: 95px;
   margin: 30px auto 40px;
 }

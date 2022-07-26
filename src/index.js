@@ -16,13 +16,15 @@ function showCelsius() {
       day.innerHTML = Math.round(mathFahr);
     });
   }
-
   temperatureDigitElement.innerHTML = Math.round(temperatureCelsius);
   temperatureUnitElement.innerHTML = "°C";
+  feelsLikeDigitElement.innerHTML = Math.round(feelsLikeTempCelsius);
+  feelsLikeUnitElement.innerHTML = "°C";
 }
 
 function showFahrenheit() {
   let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
+  let feelsLikeTempFahrenheit = (feelsLikeTempCelsius * 9) / 5 + 32;
   let forecastTempMaxElement = document.querySelectorAll(
     "#forecast-temperature-max"
   );
@@ -42,7 +44,9 @@ function showFahrenheit() {
   }
 
   temperatureDigitElement.innerHTML = Math.round(temperatureFahrenheit);
+  feelsLikeDigitElement.innerHTML = Math.round(feelsLikeTempFahrenheit);
   temperatureUnitElement.innerHTML = "°F";
+  feelsLikeUnitElement.innerHTML = "°F";
 }
 
 function getPosition(position) {
@@ -146,6 +150,7 @@ function getUv(response) {
 }
 
 function showForecast(response) {
+  console.log(response.data.current);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = "";
@@ -158,10 +163,9 @@ function showForecast(response) {
         <img src="images/${day.weather[0].icon}.svg" alt="" width="100px" />
         <p> <span id="forecast-temperature-max">${Math.round(
           day.temp.max
-        )}</span>
-         ° / <span id="forecast-temperature-min">${Math.round(
-           day.temp.min
-         )}</span>°</p>
+        )}</span>° / <span id="forecast-temperature-min">${Math.round(
+        day.temp.min
+      )}</span>°</p>
       </div>`;
     }
   });
@@ -215,11 +219,11 @@ function showTemperature(response) {
   let dateElement = document.querySelector("#date");
   let dayOfWeekElement = document.querySelector("#day-of-week");
   let descriptionElement = document.querySelector("#description");
-  let feelsLikeElement = document.querySelector("#feels-like");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
 
   temperatureCelsius = response.data.main.temp;
+  feelsLikeTempCelsius = response.data.main.feels_like;
 
   temperatureDigitElement.innerHTML = Math.round(temperatureCelsius);
   temperatureUnitElement.innerHTML = "°C";
@@ -229,9 +233,8 @@ function showTemperature(response) {
     `images/${response.data.weather[0].icon}.svg`
   );
   descriptionElement.innerHTML = response.data.weather[0].description;
-  feelsLikeElement.innerHTML = `Feels like: ${Math.round(
-    response.data.main.feels_like
-  )}°`;
+  feelsLikeDigitElement.innerHTML = Math.round(feelsLikeTempCelsius);
+  feelsLikeUnitElement.innerHTML = "°C";
   windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   humidityElement.innerHTML = `${response.data.main.humidity} %`;
 
@@ -276,5 +279,6 @@ search("London");
 
 let temperatureDigitElement = document.querySelector("#temperature-digit");
 let temperatureUnitElement = document.querySelector("#temperature-unit");
-
 let temperatureCelsius = null;
+let feelsLikeDigitElement = document.querySelector("#feels-like-digit");
+let feelsLikeUnitElement = document.querySelector("#feels-like-unit");
