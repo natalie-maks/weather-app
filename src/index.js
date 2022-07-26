@@ -1,16 +1,51 @@
 function showCelsius() {
+  let forecastTempMaxElement = document.querySelectorAll(
+    "#forecast-temperature-max"
+  );
+  let forecastTempMinElement = document.querySelectorAll(
+    "#forecast-temperature-min"
+  );
+
+  if (temperatureUnitElement.innerHTML === "°F") {
+    forecastTempMaxElement.forEach(function (day) {
+      let mathFahr = ((parseInt(day.innerHTML) - 32) * 5) / 9;
+      day.innerHTML = Math.round(mathFahr);
+    });
+    forecastTempMinElement.forEach(function (day) {
+      let mathFahr = ((parseInt(day.innerHTML) - 32) * 5) / 9;
+      day.innerHTML = Math.round(mathFahr);
+    });
+  }
+
   temperatureDigitElement.innerHTML = Math.round(temperatureCelsius);
   temperatureUnitElement.innerHTML = "°C";
 }
 
 function showFahrenheit() {
   let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
+  let forecastTempMaxElement = document.querySelectorAll(
+    "#forecast-temperature-max"
+  );
+  let forecastTempMinElement = document.querySelectorAll(
+    "#forecast-temperature-min"
+  );
+
+  if (temperatureUnitElement.innerHTML === "°C") {
+    forecastTempMaxElement.forEach(function (day) {
+      let mathFahr = (parseInt(day.innerHTML) * 9) / 5 + 32;
+      day.innerHTML = Math.round(mathFahr);
+    });
+    forecastTempMinElement.forEach(function (day) {
+      let mathFahr = (parseInt(day.innerHTML) * 9) / 5 + 32;
+      day.innerHTML = Math.round(mathFahr);
+    });
+  }
+
   temperatureDigitElement.innerHTML = Math.round(temperatureFahrenheit);
   temperatureUnitElement.innerHTML = "°F";
 }
 
 function getPosition(position) {
-  console.log(position);
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
@@ -121,7 +156,12 @@ function showForecast(response) {
       <div class="weather-forecast-item">
         <h4>${formateForecastDate(day.dt * 1000)}</h4>
         <img src="images/${day.weather[0].icon}.svg" alt="" width="100px" />
-        <p> ${Math.round(day.temp.max)}° / ${Math.round(day.temp.min)}°</p>
+        <p> <span id="forecast-temperature-max">${Math.round(
+          day.temp.max
+        )}</span>
+         ° / <span id="forecast-temperature-min">${Math.round(
+           day.temp.min
+         )}</span>°</p>
       </div>`;
     }
   });
@@ -232,8 +272,9 @@ tempCelsius.addEventListener("click", showCelsius);
 let tempFahrenheit = document.querySelector("#fahrenheit-button");
 tempFahrenheit.addEventListener("click", showFahrenheit);
 
+search("London");
+
 let temperatureDigitElement = document.querySelector("#temperature-digit");
 let temperatureUnitElement = document.querySelector("#temperature-unit");
-let temperatureCelsius = null;
 
-search("London");
+let temperatureCelsius = null;
