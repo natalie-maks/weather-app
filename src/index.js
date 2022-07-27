@@ -150,7 +150,6 @@ function getUv(response) {
 }
 
 function showForecast(response) {
-  console.log(response.data.current);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = "";
